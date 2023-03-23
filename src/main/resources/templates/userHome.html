@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>사용자 홈</title>
+  <style>
+    span {
+      color: #F9BB00;
+    }
+    button {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+<div style="width:240px;">
+  <h1>
+    <span th:text="|${user.name}|"></span>님 환영합니다!
+  </h1>
+
+  <button type="button" th:onclick="|location.href='@{/events}'|">이벤트</button>
+  <button type="button" th:onclick="|location.href='@{/products}'|">상품</button>
+  <button type="button" th:onclick="|location.href='@{/cart}'|">장바구니</button>
+</div>
+</body>
+</html>

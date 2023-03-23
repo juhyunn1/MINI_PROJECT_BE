@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>로그인</title>
+  <style>
+    button {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+<div style="width:240px;">
+  <h1>로그인</h1>
+
+  <form action="/login" method="post"> <!-- action이 비워져 있으면 get으로 들어온 url과 동일하게 post로 그대로 가지고 간다 -->
+    <div style="display:flex; justify-content:space-between;">
+      <label for="email">이메일</label>
+      <input type="text" id="email" name="email" placeholder="이메일을 입력해주세요"></input>
+    </div>
+    <div style="display:flex; justify-content:space-between;">
+      <label for="password">비밀번호</label>
+      <input type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요"></input>
+    </div>
+
+    <div>
+      <button type="submit">로그인</button>
+      <button type="button" th:onclick="|location.href='@{/join}'|">회원가입</button>
+    </div>
+  </form>
+</div>
+</body>
+
+<script th:inline="javascript">
+  console.log(/*[[${doesFailed}]]*/)
+  console.log([[${doesFailed}]])
+
+  if([[${doesFailed}]])
+    alert("로그인에 실패하였습니다.\n이메일과 비밀번호를 확인하세요.")
+</script>
+</html>
