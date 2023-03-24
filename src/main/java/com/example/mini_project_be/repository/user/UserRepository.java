@@ -1,7 +1,7 @@
-package com.example.mini_project_be.repository;
+package com.example.mini_project_be.repository.user;
 
 import com.example.mini_project_be.domain.User;
-import com.example.mini_project_be.dto.UserDtoForEdit;
+import com.example.mini_project_be.dto.user.UserDtoForEdit;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package com.example.mini_project_be.dto;
+package com.example.mini_project_be.dto.user;
 
 import lombok.Data;
 

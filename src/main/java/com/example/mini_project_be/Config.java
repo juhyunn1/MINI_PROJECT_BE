@@ -1,7 +1,7 @@
 package com.example.mini_project_be;
 
-import com.example.mini_project_be.repository.JpaUserRepository;
-import com.example.mini_project_be.repository.UserRepository;
+import com.example.mini_project_be.repository.user.JpaUserRepository;
+import com.example.mini_project_be.repository.user.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

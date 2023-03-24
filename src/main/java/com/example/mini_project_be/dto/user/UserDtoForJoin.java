@@ -1,4 +1,4 @@
-package com.example.mini_project_be.dto;
+package com.example.mini_project_be.dto.user;
 
 import lombok.Data;
 
@@ -17,6 +17,6 @@ public class UserDtoForJoin {
   private String email;
 
   @NotBlank
-  @Size(min=4)
+  @Size(min=4, max=8)
   private String password;
 }

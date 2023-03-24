@@ -1,19 +1,17 @@
-package com.example.mini_project_be.controller;
+package com.example.mini_project_be.controller.user;
 
 import com.example.mini_project_be.controller.session.SessionConst;
 import com.example.mini_project_be.controller.session.UserOnSession;
 import com.example.mini_project_be.domain.User;
-import com.example.mini_project_be.dto.UserDtoForLogin;
+import com.example.mini_project_be.dto.user.UserDtoForLogin;
 import com.example.mini_project_be.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -28,20 +26,19 @@ public class LoginController {
 
   @GetMapping("/login")
   public String login() {
-    return "login";
+    return "/user/login";
   }
 
-  // 세션 사용
   @PostMapping("/login")
   public String login(
-      @ModelAttribute("user") UserDtoForLogin userDtoForLogin, // form에서 받아온 필드만 userDto에 매핑, form에 없는 필드는 null
+      @ModelAttribute("user") UserDtoForLogin userDtoForLogin, // 폼에서 받아온 필드만 userDto에 매핑, 폼에 없는 필드는 null
       Model model,
       HttpServletRequest request
   ) {
     String email = userDtoForLogin.getEmail();
     Optional<User> temp = userService.findUserByEmail(email);
-    System.out.println("UserController.userDto : " + userDtoForLogin);
-    System.out.println("UserController.temp : " + temp);
+    log.info("UserController.userDto : " + userDtoForLogin);
+    log.info("UserController.temp : " + temp);
 
     model.addAttribute("doesFailed", false);
 
@@ -59,18 +56,18 @@ public class LoginController {
     }
     else {
       System.out.println("실패");
-      model.addAttribute("doesFailed", true);
-      return "/login";
+      model.addAttribute("doesFailed", true); // alert 띄운다
+      return "/alert";
     }
   }
 
-  // @PostMapping("/logout")
-  // public String logout(HttpServletRequest request) {
-  //   HttpSession session = request.getSession(false); // 없으면 null 반환
-  //
-  //   if(session != null) // 있으면
-  //     session.invalidate(); // 삭제
-  //
-  //   return "redirect:/";
-  // }
+  @PostMapping("/logout")
+  public String logout(HttpServletRequest request) {
+    HttpSession session = request.getSession(false); // 없으면 null 반환
+
+    if(session != null) // 있으면
+      session.invalidate(); // 삭제
+
+    return "redirect:/";
+  }
 }

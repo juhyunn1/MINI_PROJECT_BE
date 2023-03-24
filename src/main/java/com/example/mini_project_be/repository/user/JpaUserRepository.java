@@ -1,7 +1,7 @@
-package com.example.mini_project_be.repository;
+package com.example.mini_project_be.repository.user;
 
 import com.example.mini_project_be.domain.User;
-import com.example.mini_project_be.dto.UserDtoForEdit;
+import com.example.mini_project_be.dto.user.UserDtoForEdit;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;
@@ -54,7 +54,7 @@ public class JpaUserRepository implements UserRepository {
   @Override
   public void update(UserDtoForEdit userDtoForEdit) {
     User temp = findByEmail(userDtoForEdit.getEmail()).get();
-    temp.setPassword(userDtoForEdit.getPassword());
+    temp.setPassword(userDtoForEdit.getNewPassword());
   }
 
   @Override

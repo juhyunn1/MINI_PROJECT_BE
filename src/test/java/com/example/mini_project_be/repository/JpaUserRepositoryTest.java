@@ -1,11 +1,10 @@
 package com.example.mini_project_be.repository;
 
+import com.example.mini_project_be.repository.user.JpaUserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.persistence.EntityManager;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class JpaUserRepositoryTest {

@@ -1,8 +1,8 @@
 package com.example.mini_project_be.service;
 
 import com.example.mini_project_be.domain.User;
-import com.example.mini_project_be.dto.UserDtoForEdit;
-import com.example.mini_project_be.repository.UserRepository;
+import com.example.mini_project_be.dto.user.UserDtoForEdit;
+import com.example.mini_project_be.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,16 +22,21 @@ public class UserService {
   }
 
   @Transactional
-  public Long join(User user) throws IllegalStateException { // 예외 여기서 처리안하고 UserController로 던진다
-    validateDuplicateLoginId(user.getEmail());
+  public Long join(User user) {
+    // isDuplicateEmail(user.getEmail());
     System.out.println("UserService.join: " + user.getEmail());
     return userRepository.save(user).getId();
   }
-  
-  public void validateDuplicateLoginId(String email) {
+
+  // 이메일 중복확인
+  public boolean isDuplicateEmail(String email) {
     if(!findUserByEmail(email).isEmpty()) // 이미 동일한 이메일이 존재하면
-      throw new IllegalStateException("이미 존재하는 이메일 입니다."); // 예외를 호출한 함수로 던진다
+      // throw new IllegalStateException("이미 존재하는 이메일 입니다."); // 예외를 호출한 함수로 던진다
+      return true;
+
+    return false;
   }
+
 
   public Optional<User> findUserById(Long id) {
     return userRepository.findById(id);
@@ -41,17 +46,17 @@ public class UserService {
     return userRepository.findByEmail(email);
   }
 
-  public List<User> findMembers() {
+  public List<User> findUsers() {
     return userRepository.findAll();
   }
 
   @Transactional
-  public void updateMember(UserDtoForEdit userDtoForEdit) {
+  public void editPassword(UserDtoForEdit userDtoForEdit) {
     userRepository.update(userDtoForEdit);
   }
 
   @Transactional
-  public Long deleteMember(Long id) {
+  public Long deleteUser(Long id) {
     userRepository.remove(id);
     return id;
   }

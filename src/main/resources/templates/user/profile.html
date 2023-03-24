@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>프로필</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<h1>프로필</h1>
+
+<div class="container">
+  <!-- 이름 -->
+  <div>
+    <label class="mg-r-10">이름:</label>
+    <span th:text="|${user.name}|"></span>
+  </div>
+
+  <!-- 이메일 -->
+  <div>
+    <label class="mg-r-10">이메일:</label>
+    <span th:text="|${user.email}|"></span>
+  </div>
+
+  <!-- 버튼 -->
+  <form action="/change-password" method="get" class="mg-t-15">
+    <button type="submit">비밀번호 변경</button>
+  </form>
+
+  <form action="/logout" method="post">
+    <button type="submit">로그아웃</button>
+  </form>
+
+  <form action="/check-password" method="post">
+    <button type="submit">회원탈퇴</button>
+  </form>
+</div>
+</body>
+</html>

@@ -6,21 +6,20 @@
   <style>
     span {
       color: #F9BB00;
-    }
-    button {
-      width: 100%;
+      cursor: pointer;
     }
   </style>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<div style="width:240px;">
-  <h1>
-    <span th:text="|${user.name}|"></span>님 환영합니다!
-  </h1>
+<h1>
+  <span th:text="|${user.name}|" onclick="location.href='/profile'"></span>님 환영합니다!
+</h1>
 
-  <button type="button" th:onclick="|location.href='@{/events}'|">이벤트</button>
-  <button type="button" th:onclick="|location.href='@{/products}'|">상품</button>
-  <button type="button" th:onclick="|location.href='@{/cart}'|">장바구니</button>
+<div class="container">
+  <button type="button" onclick="location.href='/events'">이벤트</button>
+  <button type="button" onclick="location.href='/products'">상품</button>
+  <button type="button" onclick="location.href='/cart'">장바구니</button>
 </div>
 </body>
 </html>
